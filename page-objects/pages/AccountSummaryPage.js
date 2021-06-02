@@ -33,6 +33,7 @@ class AccountSummaryPage{
     }
     async add()
     {
+        
         await t.click(this.addToPayee)
     }
 }

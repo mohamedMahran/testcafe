@@ -5,7 +5,7 @@ class FeedbackPage extends BasePage{
     
     constructor() {
         super();
-        this. form_name= Selector('#name')
+        this.form_name= Selector('#name')
         this.form_email= Selector('#email')
         this.form_subject =Selector('#subject')
         this.form_comment = Selector('#comment')
