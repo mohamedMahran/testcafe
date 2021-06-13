@@ -1,22 +1,24 @@
-import { Selector,t } from "testcafe"
+import { Selector } from "testcafe"
+import ElementHelpers from "../../Helpers/ElementHelpers"
 
-class Navbar{
+class Navbar extends ElementHelpers{
     constructor(){
-        
+        super()
         this.searchBox = Selector('#searchTerm')
         this.signInButton = Selector('#signin_button')
         this.userIcon=Selector('.icon-user')
         this.logOutButton = Selector('#logout_link')
     }
     async search(text){
-        await t
-        .typeText(this.searchBox,text,{paste:true,replace:true})
-        .pressKey('enter')
+        debugger
+        await ElementHelpers.setText(this.searchBox,text)
+        await ElementHelpers.pressEnter()
+     
     }
     async signIn()
     {
-        await t.
-                click(this.signInButton)
+        await ElementHelpers.click(this.signInButton)
     }
+   
 }
 export default Navbar

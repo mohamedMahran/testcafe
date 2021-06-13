@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe'
+
 import FeedbackPage from '..//page-objects/pages/FeedbackPage'
 import xpathToCss from 'xpath-to-css'
 
@@ -6,6 +6,8 @@ const feedbackPage = new FeedbackPage()
 fixture `Feedback scenarios`
 .page   `http://zero.webappsecurity.com/index.html`
 test(`testing feedback section`,async t=> {
+   
+   
     //Xpath to CSS
     const xPathOfLinkToFeedBack = ` '//li[@id='feedback']' ` 
    // const linkToFeedBack = Selector('li#feedback')

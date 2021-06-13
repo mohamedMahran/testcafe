@@ -1,9 +1,10 @@
 import { Selector,t } from "testcafe"
-
-class AccountSummaryPage{
-    constructor(){   
-        this.accountSummaryTab = Selector('#account_summary_tab') 
-        this.payBillTab =Selector('li#pay_bills_tab') 
+class AccountSummaryPage {
+   
+    constructor(){ 
+        
+        this.accountSummaryTab =  Selector('#account_summary_tab') 
+        this.payBillTab = Selector('li#pay_bills_tab') 
         this.addNewPayeeTab = Selector('a').withExactText('Add New Payee') 
         this.payeeName =Selector('#np_new_payee_name')
         this.payeeAddress=Selector('#np_new_payee_address')

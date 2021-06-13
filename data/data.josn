@@ -1,0 +1,11 @@
+[
+    {
+        "username": "invalid User",
+        "password": "invalid Password",
+        "resultText": "Login and/or password are wrong"
+    },
+    {
+        "username": "username",
+        "password": "password",
+    }
+]

@@ -2,19 +2,22 @@ import { Selector } from 'testcafe'
 import LoginPage from '..//page-objects/pages/LoginPage'
 import NavBar from '..//page-objects/component/Navbar'
 import HomePage from '..//page-objects/pages/HomePage'
-
+import { ClientFunction } from 'testcafe'
 
 const loginPage = new LoginPage()
 const navBar = new NavBar()
 const homePage = new HomePage()
-
+const getPageUrl = ClientFunction(() => window.location.href)
 
 fixture `Home Page Test Scenarios `
 .page   `http://zero.webappsecurity.com/index.html`
 
+.beforeEach(async t=>{
+    homePage.maximizeWindow()
+})
+
 test(`verify the icons text at the home page`,async t=> {
 
-    homePage.beforeEach()
     
     await t.expect(homePage.icon.withText(' Online Banking').exists).ok()
     await t.expect(homePage.icon.withText('Checking Account Activity').exists).ok()      
@@ -22,14 +25,13 @@ test(`verify the icons text at the home page`,async t=> {
 })
 
 test(`verify the count of the icon-bookmark`,async t=> {
-    homePage.beforeEach()
-    
+       
     await t.expect(homePage.icon.count).eql(4)
 })
 
 test(`verify the count and image source of the slider  `,async t=> {
 
-    homePage.beforeEach()
+    
 
     await t.expect(await homePage.images.count).eql(3)
     const imgSrc= await homePage.images.getAttribute('src')
@@ -37,8 +39,7 @@ test(`verify the count and image source of the slider  `,async t=> {
 })
 
 test(`verify the links   `,async t=> {
-    
- 
+   
     const linksCount = await homePage.links.count;
 
     for(let i =0 ; i < linksCount;i++)
@@ -95,4 +96,37 @@ test(`verify the links   `,async t=> {
     }
     
 })
+test.clientScripts({
+    content: `
+        window.addEventListener('error', function (e) {
+            console.error(e.message); 
+        });`
+})(`Skip error but log it`, async t => {
+    console.log(await t.getBrowserConsoleMessages());
+});
+test(`verify each footer link`,async t=> {
+    
+    let url ='http://zero.webappsecurity.com/index.html'
+    homePage.maximizeWindow()
+    
+    
+    await (await homePage.getFooterNav()).clickOnTheFooterLink('Download WebInspect')
+    await t.expect(await getPageUrl()).contains('cyberres/application-security/webinspect')
+    await homePage.goTo(url)
 
+    
+    await (await homePage.getFooterNav()).clickOnTheFooterLink('Terms of Use')
+    await t.expect(await getPageUrl()).contains('https://www.microfocus.com/about/legal/')
+    await homePage.goTo(url)
+
+   
+    await (await homePage.getFooterNav()).clickOnTheFooterLink('Contact Micro Focus')
+    await t.expect(await getPageUrl()).contains('/secure/index.jsp')
+    
+})
+
+test.only(`verify the footer links count`,async t=> {
+    
+    let expectedCountOfFooterLinks = await (await homePage.getFooterNav()).getCountOfFooterLinks()
+    await t.expect(expectedCountOfFooterLinks).gte(expectedCountOfFooterLinks)
+})

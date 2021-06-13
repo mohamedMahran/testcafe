@@ -1,12 +1,16 @@
 import { t } from "testcafe"
-
+import { ClientFunction } from 'testcafe';
 class BasePage{
 
-    async beforeEach(){
+    async maximizeWindow(){
         // run before each test
         await t.maximizeWindow()
-        await t.setTestSpeed(0.7)
+       // await t.setTestSpeed(1)
         
+    }
+    async goTo(url)
+    {
+        await t.navigateTo(url)
     }
     async waitFor(milliSeconds)
     {
@@ -17,5 +21,9 @@ class BasePage{
         await t.setToSpeed(speedLevel)
     }
 
+    async getCurrentURL()
+    {
+        return  await ClientFunction(() => window.location.href)();
+    }
 }
 export default BasePage

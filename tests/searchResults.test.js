@@ -1,5 +1,5 @@
 
-import { Selector } from 'testcafe'
+
 import SearchResultsPage from '..//page-objects/pages/SearchResultsPage'
 import NavBar from '..//page-objects/component/NavBar'
 
