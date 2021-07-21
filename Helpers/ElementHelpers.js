@@ -1,13 +1,14 @@
-import { t } from "testcafe"
+import { Selector, t } from "testcafe"
 
 
 class ElementHelpers{
 
     static async setText(element,text){
-        debugger
+        
         await t.pressKey('ctrl+a delete')
         await t.typeText(element,text)  
     }
+  
     static async pressEnter(){
        
         await  t.pressKey('enter')
@@ -18,13 +19,13 @@ class ElementHelpers{
     }
     static async clickOnElementWithText(element,text)
     {
-        
         await  t.click(await element.withText(text))    
     }
-    static async getCount(element)
+    static async getCount(array)
     {
-        return  await element.count  
+        return  await array.count  
     }
+   
 }
 
 export  default ElementHelpers

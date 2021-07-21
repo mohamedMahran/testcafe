@@ -8,6 +8,10 @@ class BasePage{
        // await t.setTestSpeed(1)
         
     }
+    async closeWindow()
+    {
+        await t.closeWindow()
+    }
     async goTo(url)
     {
         await t.navigateTo(url)

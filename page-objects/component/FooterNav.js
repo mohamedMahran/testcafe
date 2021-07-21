@@ -15,5 +15,6 @@ class FooterNav extends ElementHelpers{
     {
         return await ElementHelpers.getCount(this.footerLinks)
     }
+   
 }
 export default FooterNav

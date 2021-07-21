@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:chrome": "testcafe  chrome ./tests  -s takeOnFails=true --skip-js-errors --skip-uncaught-errors",
+    "test:chrome:debug": "testcafe --inspect-brk chrome ./tests  -s takeOnFails=true --skip-js-errors --skip-uncaught-errors",
     "test:chrome:concurrency": "testcafe -c 3 chrome:headless  ./tests -s takeOnFails=true",
     "test:chrome:headless": "testcafe -c 3  chrome:headless  ./tests -s takeOnFails=true   --skip-js-errors --skip-uncaught-errors --reporter list",
     "test:chrome:mobile": "testcafe chrome:emulation:device=iphone x ./tests -s takeOnFails=true",

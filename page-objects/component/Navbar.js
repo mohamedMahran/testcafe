@@ -13,12 +13,13 @@ class Navbar extends ElementHelpers{
         debugger
         await ElementHelpers.setText(this.searchBox,text)
         await ElementHelpers.pressEnter()
-     
     }
     async signIn()
     {
         await ElementHelpers.click(this.signInButton)
     }
+   
+  
    
 }
 export default Navbar

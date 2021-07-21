@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Valid Scenario",
+        "username":"username",
+        "password": "password"
+
+    },
+    
+    {
+        "name":"Invalid Scenario",
+        "username":"invalid",
+        "password": "password"
+    }
+]

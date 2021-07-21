@@ -9,24 +9,21 @@ const navBar = new NavBar()
 const homePage = new HomePage()
 const getPageUrl = ClientFunction(() => window.location.href)
 
-fixture `Home Page Test Scenarios `
-.page   `http://zero.webappsecurity.com/index.html`
+fixture `Home Page Test Scenarios `.page   `http://zero.webappsecurity.com/index.html`
 
 .beforeEach(async t=>{
     homePage.maximizeWindow()
 })
 
 test(`verify the icons text at the home page`,async t=> {
-
-    
-    await t.expect(homePage.icon.withText(' Online Banking').exists).ok()
-    await t.expect(homePage.icon.withText('Checking Account Activity').exists).ok()      
-    await t.expect(homePage.icon.withText('Transfer Funds').exists).ok()
+    await t.expect(homePage.iconsTitle.withText('Online Banking').exists).ok()
+    await t.expect(homePage.iconsTitle.withText('Checking Account Activity').exists).ok()      
+    await t.expect(homePage.iconsTitle.withText('Transfer Funds').exists).ok()
 })
 
 test(`verify the count of the icon-bookmark`,async t=> {
-       
-    await t.expect(homePage.icon.count).eql(4)
+    let expectedCountOfIconBookMark = await  homePage.getCountOfIcons()
+    await t.expect( expectedCountOfIconBookMark).eql(4)
 })
 
 test(`verify the count and image source of the slider  `,async t=> {
@@ -125,7 +122,7 @@ test(`verify each footer link`,async t=> {
     
 })
 
-test.only(`verify the footer links count`,async t=> {
+test(`verify the footer links count`,async t=> {
     
     let expectedCountOfFooterLinks = await (await homePage.getFooterNav()).getCountOfFooterLinks()
     await t.expect(expectedCountOfFooterLinks).gte(expectedCountOfFooterLinks)
